@@ -1,3 +1,5 @@
+#include "kernel/types.h"
+
 struct stat;
 
 // system calls
@@ -44,3 +46,7 @@ void free(void*);
 int atoi(const char*);
 int memcmp(const void *, const void *, uint);
 void *memcpy(void *, const void *, uint);
+//Add peterson tournamnet function calls
+int tournament_create(int processes);
+int tournament_acquire(void);
+int tournament_release(void);
