@@ -31,7 +31,6 @@ int tournament_create(int processes) {
         return -1;
     }
 
-    printf("Created %d processes", processes);
     depth = tour_tree_height(processes);
     num_processes = processes;
 
@@ -65,8 +64,10 @@ int tournament_create(int processes) {
 
     for(int lvl = 0; lvl < depth; lvl++) {
         path_roles[lvl] = (curr_id & (1 << (depth - lvl - 1))) >> (depth - lvl - 1);
-        int level_lock = curr_id >> (depth - 1);
-        path_locks[lvl] = locks[level_lock + (1 << lvl) - 1];
+        int level_lock = curr_id >> (depth - lvl);
+        int lock_index = level_lock + ((1 << lvl) - 1);
+        path_locks[lvl] = locks[lock_index];
+
     }
         
     return curr_id;
