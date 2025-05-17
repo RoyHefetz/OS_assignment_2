@@ -22,13 +22,10 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    // --- Begin Critical Section ---
     printf("Process %d (TID %d) entered critical section\n", getpid(), tid);
-    // Simulate work
     sleep(1);
     printf("Process %d (TID %d) exiting critical section\n", getpid(), tid);
-    // --- End Critical Section ---
-
+  
     // Release the lock
     if (tournament_release() < 0) {
         printf("Process %d failed to release tournament lock\n", getpid());
